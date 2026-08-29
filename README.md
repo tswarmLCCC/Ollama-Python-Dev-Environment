@@ -40,3 +40,7 @@ Optional environment variables:
 ```bash
 ollama serve
 ```
+## New to Codespaces?
+
+See `NEWBIE_GUIDE.md` for a beginner walkthrough, template usage, and student rollout tips.
+
