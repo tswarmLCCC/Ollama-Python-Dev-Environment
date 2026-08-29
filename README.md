@@ -32,6 +32,11 @@ Optional environment variables:
 - `OLLAMA_MODEL` (default: `llama3.2:1b`)
 - `OLLAMA_PROMPT` (used by `examples/02_generate.py`)
 
+```bash
+export OLLAMA_PROMPT="Please write a gumbo recipe"
+python examples/02_generate.py
+```
+
 ## Notes
 
 - Ollama server logs are written to `/tmp/ollama-server.log`.
