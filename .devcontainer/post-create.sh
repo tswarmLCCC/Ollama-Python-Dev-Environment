@@ -67,6 +67,7 @@ done
 
 if [ "$ready" = false ]; then
   log "Ollama server did not become ready within ${MAX_WAIT_SECONDS} seconds."
+  trap - ERR
   exit 1
 fi
 
