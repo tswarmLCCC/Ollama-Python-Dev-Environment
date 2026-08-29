@@ -13,6 +13,8 @@ log() {
   echo "[setup] $1" | tee -a "$STATUS_LOG"
 }
 
+trap 'log "Setup failed at line ${LINENO}. Check ${STATUS_LOG} and ${LOG_FILE}."' ERR
+
 retry() {
   attempts="$1"
   delay_seconds="$2"
