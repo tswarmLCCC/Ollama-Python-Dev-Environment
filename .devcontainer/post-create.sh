@@ -13,6 +13,24 @@ log() {
   echo "[setup] $1" | tee -a "$STATUS_LOG"
 }
 
+retry() {
+  attempts="$1"
+  delay_seconds="$2"
+  shift 2
+  try=1
+  while true; do
+    if "$@"; then
+      return 0
+    fi
+    if [ "$try" -ge "$attempts" ]; then
+      return 1
+    fi
+    log "Command failed (attempt ${try}/${attempts}): $*. Retrying in ${delay_seconds}s."
+    try=$((try + 1))
+    sleep "$delay_seconds"
+  done
+}
+
 log "Starting post-create setup."
 
 if ! command -v ollama >/dev/null 2>&1; then
@@ -51,12 +69,12 @@ fi
 
 log "Ollama API is ready."
 log "Pulling model: ${MODEL_NAME}"
-ollama pull "$MODEL_NAME"
+retry 3 3 ollama pull "$MODEL_NAME"
 log "Model pull complete."
 
 log "Installing Python dependencies."
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
+retry 3 3 python -m pip install --upgrade pip
+retry 3 3 python -m pip install -r requirements.txt
 log "Python dependency install complete."
 
 ready_at="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
