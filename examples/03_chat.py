@@ -12,4 +12,4 @@ messages = [
 ]
 
 response = chat(model=MODEL, messages=messages)
-print(response["message"]["content"])
+print(response.message.content)

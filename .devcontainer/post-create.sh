@@ -9,7 +9,22 @@ fi
 
 if ! pgrep -x ollama >/dev/null 2>&1; then
   nohup ollama serve >/tmp/ollama-server.log 2>&1 &
-  sleep 3
+fi
+
+ready=false
+i=0
+while [ "$i" -lt 30 ]; do
+  if curl -fsS http://127.0.0.1:11434/api/tags >/dev/null 2>&1; then
+    ready=true
+    break
+  fi
+  sleep 1
+  i=$((i + 1))
+done
+
+if [ "$ready" = false ]; then
+  echo "Ollama server did not become ready within 30 seconds." >&2
+  exit 1
 fi
 
 ollama pull "$MODEL_NAME"
