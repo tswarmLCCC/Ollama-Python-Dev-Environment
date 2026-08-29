@@ -23,6 +23,7 @@ retry() {
       return 0
     fi
     if [ "$try" -ge "$attempts" ]; then
+      log "Command failed after ${attempts} attempts: $*"
       return 1
     fi
     log "Command failed (attempt ${try}/${attempts}): $*. Retrying in ${delay_seconds}s."
