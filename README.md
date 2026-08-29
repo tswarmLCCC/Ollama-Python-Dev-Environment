@@ -35,11 +35,21 @@ Optional environment variables:
 ## Notes
 
 - Ollama server logs are written to `/tmp/ollama-server.log`.
+- Setup progress logs are written to `/tmp/ollama-setup-status.log`.
+- Setup completion marker is written to `/tmp/ollama-setup-ready`.
 - If needed, you can manually start the server with:
 
 ```bash
 ollama serve
 ```
+
+To check setup state quickly:
+
+```bash
+cat /tmp/ollama-setup-status.log
+cat /tmp/ollama-setup-ready
+```
+
 ## New to Codespaces?
 
 See `NEWBIE_GUIDE.md` for a beginner walkthrough, template usage, and student rollout tips.
@@ -47,4 +57,3 @@ See `NEWBIE_GUIDE.md` for a beginner walkthrough, template usage, and student ro
 ## Want to understand the container itself?
 
 See `CONTAINER_GUIDE.md` for a full explanation of how containers/Codespaces work and exactly what this repo's `.devcontainer/` setup does.
-

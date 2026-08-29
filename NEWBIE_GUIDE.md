@@ -71,6 +71,9 @@ python examples/02_generate.py
 - Keep `.devcontainer/devcontainer.json` and `.devcontainer/post-*.sh` in version control.
 - If Ollama looks stuck, check logs:
   - `/tmp/ollama-server.log`
+  - `/tmp/ollama-setup-status.log`
+- Confirm setup completion marker:
+  - `/tmp/ollama-setup-ready`
 - If setup failed on first build, rebuild container in Codespaces.
 - Stick to small models for smoother student experience in cloud workspaces.
 
@@ -86,3 +89,14 @@ python examples/02_generate.py
    ollama pull llama3.2:1b
    ```
 4. Re-run demo script
+
+## How do I know setup is done?
+
+Run:
+
+```bash
+cat /tmp/ollama-setup-status.log
+cat /tmp/ollama-setup-ready
+```
+
+If setup completed, the status log will end with a line like `Setup complete` and the ready file will contain a timestamp and model name.
