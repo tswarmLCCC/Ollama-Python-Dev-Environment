@@ -10,7 +10,7 @@ log() {
   echo "[start] $1" | tee -a "$STATUS_LOG"
 }
 
-if ! pgrep -x ollama >/dev/null 2>&1; then
+if ! pgrep -f "ollama serve" >/dev/null 2>&1; then
   log "Ollama server not running. Starting it now."
   nohup ollama serve >"$LOG_FILE" 2>&1 &
 else

@@ -25,7 +25,7 @@ else
   log "Ollama already installed."
 fi
 
-if ! pgrep -x ollama >/dev/null 2>&1; then
+if ! pgrep -f "ollama serve" >/dev/null 2>&1; then
   log "Starting Ollama server."
   nohup ollama serve >"$LOG_FILE" 2>&1 &
 else
