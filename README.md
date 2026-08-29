@@ -44,3 +44,7 @@ ollama serve
 
 See `NEWBIE_GUIDE.md` for a beginner walkthrough, template usage, and student rollout tips.
 
+## Want to understand the container itself?
+
+See `CONTAINER_GUIDE.md` for a full explanation of how containers/Codespaces work and exactly what this repo's `.devcontainer/` setup does.
+
