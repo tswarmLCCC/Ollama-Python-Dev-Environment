@@ -38,6 +38,11 @@ log "Starting post-create setup."
 
 if ! command -v ollama >/dev/null 2>&1; then
   log "Ollama not found. Installing..."
+  if ! command -v zstd >/dev/null 2>&1; then
+    log "Installing zstd required by the Ollama installer."
+    sudo apt-get update
+    sudo apt-get install -y zstd
+  fi
   install_script="/tmp/ollama-install.sh"
   curl -fsSL https://ollama.com/install.sh -o "$install_script"
   bash "$install_script"
