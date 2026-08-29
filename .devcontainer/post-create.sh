@@ -59,6 +59,7 @@ python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 log "Python dependency install complete."
 
-date -u +"ready_at=%Y-%m-%dT%H:%M:%SZ model=${MODEL_NAME}" >"$READY_FILE"
+ready_at="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+printf 'ready_at=%s model=%s\n' "$ready_at" "$MODEL_NAME" >"$READY_FILE"
 log "Setup complete. Ready marker: ${READY_FILE}"
 log "Server log: ${LOG_FILE}"

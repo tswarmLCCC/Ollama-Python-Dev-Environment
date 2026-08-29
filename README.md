@@ -49,6 +49,7 @@ To check setup state quickly:
 cat /tmp/ollama-setup-status.log
 cat /tmp/ollama-setup-ready
 ```
+
 ## New to Codespaces?
 
 See `NEWBIE_GUIDE.md` for a beginner walkthrough, template usage, and student rollout tips.
